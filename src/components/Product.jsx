@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export default function Product({
 	id,
 	image,
@@ -25,3 +26,12 @@ export default function Product({
 		</article>
 	);
 }
+
+Product.propTypes = {
+	description: PropTypes.any,
+	id: PropTypes.number,
+	image: PropTypes.string,
+	onAddToCart: PropTypes.func,
+	price: PropTypes.number,
+	title: PropTypes.string,
+};
