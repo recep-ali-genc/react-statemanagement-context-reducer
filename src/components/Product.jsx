@@ -1,37 +1,40 @@
 import PropTypes from 'prop-types';
+import {useContext} from "react";
+import {ShoppingCartContext} from "./store/shopping-cart-context.jsx";
 
 export default function Product({
-                                    id,
-                                    image,
-                                    title,
-                                    price,
-                                    description,
-                                    onAddToCart,
+                                  id,
+                                  image,
+                                  title,
+                                  price,
+                                  description,
                                 }) {
-    return (
-        <article className='product'>
-            <img
-                src={image} alt={title}
-            />
-            <div className='product-content'>
-                <div>
-                    <h3>{title}</h3>
-                    <p className='product-price'>${price}</p>
-                    <p>{description}</p>
-                </div>
-                <p className='product-actions'>
-                    <button onClick={() => onAddToCart(id)}>Add to Cart</button>
-                </p>
-            </div>
-        </article>
-    );
+
+  const {handleAddItemToCart} = useContext(ShoppingCartContext);
+
+  return (
+      <article className='product'>
+        <img
+            src={image} alt={title}
+        />
+        <div className='product-content'>
+          <div>
+            <h3>{title}</h3>
+            <p className='product-price'>${price}</p>
+            <p>{description}</p>
+          </div>
+          <p className='product-actions'>
+            <button onClick={() => handleAddItemToCart(id)}>Add to Cart</button>
+          </p>
+        </div>
+      </article>
+  );
 }
 
 Product.propTypes = {
-    description: PropTypes.any,
-    id: PropTypes.number,
-    image: PropTypes.string,
-    onAddToCart: PropTypes.func,
-    price: PropTypes.number,
-    title: PropTypes.string,
+  description: PropTypes.any,
+  id: PropTypes.number,
+  image: PropTypes.string,
+  price: PropTypes.number,
+  title: PropTypes.string,
 };
